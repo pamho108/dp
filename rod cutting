@@ -1,0 +1,49 @@
+# dp
+//geeksforgeeks
+
+#include<iostream>
+#include<cstring>
+#include<string>
+#include<vector>
+#include<utility>
+#include<stdlib.h>
+#include<limits.h>
+#include<cmath>
+#include<set>
+#include<initializer_list>
+#include<unordered_set>
+#include<unordered_map>
+#include<map>
+#include<iomanip>
+#include<algorithm>
+
+#define sze 1000005
+#define ld long double
+#define ll long long
+#define endl "\n"
+#define pb push_back
+#define mkp make_pair
+#define mod 1000000007
+#define ff first
+#define ss second
+#define F(i,a,b) for(int i = (int)(a); i <= (int)(b); i++)
+#define RF(i,a,b) for(int i = (int)(a); i >= (int)(b); i--)
+
+using namespace std;
+
+int main(int argc, const char *argv[])
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int len[]={0,1,2,3,4,5,6,7,8};
+    int price[]={0,3,5,8,9,10,17,17,20};
+    int dp[]={0,3,5,8,9,10,17,17,20};
+    F(i,1,8)
+    {
+        F(j,1,i)
+        {
+            dp[i] = max(dp[i],dp[i-j]+dp[j]);
+        }
+    }
+    cout<<dp[8]<<endl;
+}

@@ -1,0 +1,94 @@
+//https://www.youtube.com/watch?v=S9oUiVYEq7E&t=416s
+
+
+
+#include<iostream>
+#include<cstring>
+#include<string>
+#include<vector>
+#include<utility>
+#include<stdlib.h>
+#include<limits.h>
+#include<cmath>
+#include<set>
+#include<initializer_list>
+#include<unordered_set>
+#include<unordered_map>
+#include<map>
+#include<iomanip>
+#include<algorithm>
+
+#define sze 1000005
+#define ld long double
+#define ull unsigned long long
+#define ll long long
+#define endl "\n"
+#define pb push_back
+#define mkp make_pair
+#define mod 1000000007
+#define ff first
+#define ss second
+#define F(i,a,b) for(int i = (int)(a); i <= (int)(b); i++)
+#define RF(i,a,b) for(int i = (int)(a); i >= (int)(b); i--)
+
+using namespace std;
+
+int main(int argc, const char *argv[])
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t; cin>>t;
+    while(t--)
+    {
+        int n; cin>>n;
+        int arr[n+1];
+        F(i,0,n-1)
+        {
+            cin>>arr[i];
+        }
+        ll temp[n+1];
+        F(i,0,n-1)
+        {
+            temp[i]=0;
+        }
+        ll len=0;
+       
+        F(i,1,n-1)
+        {
+            if(arr[temp[0]]>arr[i])
+            {
+                temp[0]=i;
+            }
+            else if(arr[i]>arr[temp[len]])
+            {
+                len++;
+                temp[len]=i;
+            }
+            else if(arr[i]>arr[temp[0]] && arr[i]<arr[temp[len]])
+            {
+                ll left=0,right=len;
+                while(left<=right)
+                {
+                    
+                    ll mid = (left+right)/2;
+                    if(mid<len && (arr[temp[mid]]<arr[i]) && (arr[temp[mid+1]]>=arr[i]))
+                    {
+                        temp[mid+1]=i;
+                        break;
+                    }
+                    else if(arr[temp[mid]]>arr[i])
+                    {
+                        
+                        right = mid-1;
+                    }
+                    else
+                    {
+                        left = mid+1;
+                    }
+                    
+                }
+            }
+        }
+        cout<<len+1<<endl;
+    }
+}
